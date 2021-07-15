@@ -44,9 +44,6 @@ public class NonConstructibleChange {
         }
 
         return currentChange + 1;
-
-
-
     }
 
 
