@@ -1,5 +1,7 @@
 package AlgoExpert;
 
+import java.util.Stack;
+
 public class NodeDepths {
 
     public static class BinaryTree {
@@ -13,6 +15,7 @@ public class NodeDepths {
             this.right = null;
         }
     }
+
 
     //DFS
     // O(n) time |  O(H) height of the tree
@@ -63,16 +66,18 @@ public class NodeDepths {
 
         System.out.println(nodeDepths(tree));
         System.out.println(nodeDepths2(tree));
+        System.out.println(nodeDepths3(tree));
     }
 
 
     //BFS
     // O(n) time | O(H) height of the tree
-   static int sum = 0;
+    static int sum = 0;
+
     static void nodeDepths2(BinaryTree node, int depth) {
         if (node == null)
             return;
-        sum+=depth;
+        sum += depth;
         nodeDepths2(node.left, depth + 1);
         nodeDepths2(node.right, depth + 1);
     }
@@ -86,4 +91,41 @@ public class NodeDepths {
         return sum;
     }
 
+
+    static int nodeDepths3(BinaryTree root) {
+        int sumOfDepths = 0;
+        Stack<Pair> stack = new Stack<>();
+        stack.push(new Pair(root, 0));
+
+
+        while (stack.size() > 0) {
+            Pair pair = stack.pop();
+
+            sumOfDepths += pair.depth;
+
+            if (pair.node.left != null) {
+                stack.push(new Pair(pair.node.left, pair.depth + 1));
+            }
+
+            if (pair.node.right != null) {
+                stack.push(new Pair(pair.node.right, pair.depth + 1));
+            }
+        }
+
+        return sumOfDepths;
+    }
+
+    static class Pair {
+        NodeDepths.BinaryTree node;
+        int depth;
+
+        Pair(NodeDepths.BinaryTree node, int depth) {
+            this.node = node;
+            this.depth = depth;
+        }
+    }
 }
+
+
+
+
