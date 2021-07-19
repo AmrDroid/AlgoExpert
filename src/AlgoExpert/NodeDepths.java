@@ -4,12 +4,12 @@ import java.util.Stack;
 
 public class NodeDepths {
 
-    public static class BinaryTree {
+    public static class Node {
         int value;
-        BinaryTree left;
-        BinaryTree right;
+        Node left;
+        Node right;
 
-        BinaryTree(int value) {
+        Node(int value) {
             this.value = value;
             this.left = null;
             this.right = null;
@@ -19,13 +19,13 @@ public class NodeDepths {
 
     //DFS
     // O(n) time |  O(H) height of the tree
-    static int nodeDepths(BinaryTree node, int depth) {
+    static int nodeDepths(Node node, int depth) {
         if (node == null)
             return 0;
         return depth + nodeDepths(node.left, depth + 1) + nodeDepths(node.right, depth + 1);
     }
 
-    static int nodeDepths(BinaryTree tree) {
+    static int nodeDepths(Node tree) {
         if (tree == null)
             return 0;
         return nodeDepths(tree, 0);
@@ -42,15 +42,15 @@ public class NodeDepths {
 //                8   9
 
 
-        BinaryTree tree = new BinaryTree(1);
-        BinaryTree child1 = new BinaryTree(2);
-        BinaryTree child2 = new BinaryTree(3);
-        BinaryTree child3 = new BinaryTree(4);
-        BinaryTree child4 = new BinaryTree(5);
-        BinaryTree child5 = new BinaryTree(6);
-        BinaryTree child6 = new BinaryTree(7);
-        BinaryTree child7 = new BinaryTree(8);
-        BinaryTree child8 = new BinaryTree(9);
+        Node tree = new Node(1);
+        Node child1 = new Node(2);
+        Node child2 = new Node(3);
+        Node child3 = new Node(4);
+        Node child4 = new Node(5);
+        Node child5 = new Node(6);
+        Node child6 = new Node(7);
+        Node child7 = new Node(8);
+        Node child8 = new Node(9);
 
         tree.left = child1;
         tree.right = child2;
@@ -74,7 +74,7 @@ public class NodeDepths {
     // O(n) time | O(H) height of the tree
     static int sum = 0;
 
-    static void nodeDepths2(BinaryTree node, int depth) {
+    static void nodeDepths2(Node node, int depth) {
         if (node == null)
             return;
         sum += depth;
@@ -82,7 +82,7 @@ public class NodeDepths {
         nodeDepths2(node.right, depth + 1);
     }
 
-    static int nodeDepths2(BinaryTree tree) {
+    static int nodeDepths2(Node tree) {
 
         if (tree == null)
             return 0;
@@ -91,8 +91,10 @@ public class NodeDepths {
         return sum;
     }
 
-
-    static int nodeDepths3(BinaryTree root) {
+    //    Average: O(n) time | O(h) space, where n is the number of nodes in the Binary Tree and h is the height of the Binary Tree.
+//
+//    Worst(imbalanced Binary Tree): O(n) time | O(n) space, where n is the number of nodes in the Binary Tree.
+    static int nodeDepths3(Node root) {
         int sumOfDepths = 0;
         Stack<Pair> stack = new Stack<>();
         stack.push(new Pair(root, 0));
@@ -116,10 +118,10 @@ public class NodeDepths {
     }
 
     static class Pair {
-        NodeDepths.BinaryTree node;
+        NodeDepths.Node node;
         int depth;
 
-        Pair(NodeDepths.BinaryTree node, int depth) {
+        Pair(NodeDepths.Node node, int depth) {
             this.node = node;
             this.depth = depth;
         }

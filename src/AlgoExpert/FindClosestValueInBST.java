@@ -1,12 +1,12 @@
 package AlgoExpert;
 
 public class FindClosestValueInBST {
-    static class BST {
+    static class Node {
         public int value;
-        public BST left;
-        public BST right;
+        public Node left;
+        public Node right;
 
-        public BST(int value) {
+        public Node(int value) {
             this.value = value;
         }
     }
@@ -14,7 +14,7 @@ public class FindClosestValueInBST {
     //    Average: O(log(n)) time | O(log(n)) space, where n is the number of nodes in the Binary Search Tree.
     //    Worst: O(n) time | O(n) space, where n is the number of nodes in the Binary Search Tree.
     //    The space complexity is on average O(log(n)) and the worst O(n), because each recursive call to findClosestValueInBst adds a new frame on the call stack, which means we are using extra memory. In other words, we'll be using O(h) memory, where h is the height of the tree.
-    public static int findClosestValueInBstHelper(BST tree, int target, int closest) {
+    public static int findClosestValueInBstHelper(Node tree, int target, int closest) {
 
         if (tree == null)
             return closest;
@@ -30,7 +30,7 @@ public class FindClosestValueInBST {
         return closest;
     }
 
-    public static int findClosestValueInBst(BST tree, int target) {
+    public static int findClosestValueInNode(Node tree, int target) {
         return findClosestValueInBstHelper(tree, target, tree.value);
     }
 
@@ -40,10 +40,10 @@ public class FindClosestValueInBST {
     //    Iterative:
 //    Average: O(log(n)) time | O(1) space, where n is the number of nodes in the Binary Search Tree.
 //    Worst: O(n) time | O(1) space, , where n is the number of nodes in the Binary Search Tree.
-    static int findClosestValueInBst2(BST tree, int target) {
+    static int findClosestValueInBst2(Node tree, int target) {
         int currentClosestValue = 0;
         int currentSmallestDifference = Integer.MAX_VALUE;
-        BST currentNode = tree;
+        Node currentNode = tree;
 
         while (currentNode != null) {
             int value = currentNode.value;
@@ -67,13 +67,13 @@ public class FindClosestValueInBST {
 
     public static void main(String[] args) {
 
-        BST tree = new BST(10);
-        BST child1 = new BST(8);
-        BST child2 = new BST(7);
-        BST child3 = new BST(9);
-        BST child4 = new BST(12);
-        BST child5 = new BST(15);
-        BST child6 = new BST(13);
+        Node tree = new Node(10);
+        Node child1 = new Node(8);
+        Node child2 = new Node(7);
+        Node child3 = new Node(9);
+        Node child4 = new Node(12);
+        Node child5 = new Node(15);
+        Node child6 = new Node(13);
 
         tree.left = child1;
         tree.right = child4;
@@ -82,7 +82,7 @@ public class FindClosestValueInBST {
         child4.right = child6;
         child6.right = child5;
 
-        System.out.println(findClosestValueInBst(tree, 6));
+        System.out.println(findClosestValueInNode(tree, 6));
         System.out.println(findClosestValueInBst2(tree, 6));
     }
 }

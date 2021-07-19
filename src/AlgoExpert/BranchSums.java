@@ -4,19 +4,19 @@ import java.util.ArrayList;
 import java.util.Stack;
 
 public class BranchSums {
-    public static class BinaryTree {
+    public static class Node {
         int value;
-        BinaryTree left;
-        BinaryTree right;
+        Node left;
+        Node right;
 
-        BinaryTree(int value) {
+        Node(int value) {
             this.value = value;
             this.left = null;
             this.right = null;
         }
     }
 
-    static void branchSums(BinaryTree root, ArrayList<Integer> list, int sum) {
+    static void branchSums(Node root, ArrayList<Integer> list, int sum) {
         if (root == null) return;
 
         if (root.left == null && root.right == null) {
@@ -27,7 +27,7 @@ public class BranchSums {
         branchSums(root.right, list, root.value + sum);
     }
 
-    static ArrayList<Integer> branchSums(BinaryTree root) {
+    static ArrayList<Integer> branchSums(Node root) {
         if (root == null) return new ArrayList<>();
 
         ArrayList<Integer> list = new ArrayList<>();
@@ -46,15 +46,15 @@ public class BranchSums {
 //                8   9
 
 
-        BinaryTree tree = new BinaryTree(1);
-        BinaryTree child1 = new BinaryTree(2);
-        BinaryTree child2 = new BinaryTree(3);
-        BinaryTree child3 = new BinaryTree(4);
-        BinaryTree child4 = new BinaryTree(5);
-        BinaryTree child5 = new BinaryTree(6);
-        BinaryTree child6 = new BinaryTree(7);
-        BinaryTree child7 = new BinaryTree(8);
-        BinaryTree child8 = new BinaryTree(9);
+        Node tree = new Node(1);
+        Node child1 = new Node(2);
+        Node child2 = new Node(3);
+        Node child3 = new Node(4);
+        Node child4 = new Node(5);
+        Node child5 = new Node(6);
+        Node child6 = new Node(7);
+        Node child7 = new Node(8);
+        Node child8 = new Node(9);
 
         tree.left = child1;
         tree.right = child2;
@@ -72,7 +72,7 @@ public class BranchSums {
         System.out.println(branchSums2(tree).toString());
     }
 
-    public static ArrayList<Integer> branchSums2(BinaryTree root) {
+    public static ArrayList<Integer> branchSums2(Node root) {
         Stack<Pair> stack = new Stack<>();
         ArrayList<Integer> list = new ArrayList<>();
         Pair current;
@@ -95,10 +95,10 @@ public class BranchSums {
 }
 
 class Pair {
-    BranchSums.BinaryTree node;
+    BranchSums.Node node;
     int runningSum;
 
-    Pair(BranchSums.BinaryTree node, int sum) {
+    Pair(BranchSums.Node node, int sum) {
         this.node = node;
         this.runningSum = sum;
     }
