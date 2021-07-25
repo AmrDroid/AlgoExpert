@@ -1,8 +1,13 @@
 package AlgoExpert;
 
+import java.util.Collections;
+import java.util.PriorityQueue;
+
 public class FindThreeLargestNumbers {
     //O(n) time | O(1) space, where n is the length of the input array.
     public static int[] findThreeLargestNumbers(int[] array) {
+        if (array == null || array.length < 3) return null;
+
         int[] arr = new int[3];
         int index = 0;
         for (int i = array.length - 1; i >= array.length - 3; i--) {
@@ -23,6 +28,8 @@ public class FindThreeLargestNumbers {
     ////////////////////////////////////////////////////////////////////
 //O(n) time | O(1) space, where n is the length of the input array.
     static int[] findThreeLargestNumbers2(int[] array) {
+        if (array == null || array.length < 3) return null;
+
         int[] threeLargestNums = new int[3];
 
         for (int num : array) {
@@ -44,7 +51,6 @@ public class FindThreeLargestNumbers {
         }
     }
 
-    //5 7 8
     static void shiftAndUpdate(int[] array, int num, int idx) {
         for (int i = 0; i <= idx; i++) {
             if (i == idx) {
@@ -55,18 +61,34 @@ public class FindThreeLargestNumbers {
         }
     }
 
+    ///////////////////////////////////////
+    static int[] findThreeLargestNumbers3(int[] array) {
+        int k = 3;
+        int[] res = new int[3];
+        PriorityQueue<Integer> maxHeap = new PriorityQueue<>(Collections.reverseOrder());
+        for (int el : array)
+            maxHeap.add(el);
+        for (int i = k - 1; i >= 0; i--)
+        {
+            res[i] = maxHeap.poll();
+        }
+
+        return res;
+    }
 
     public static void main(String[] args) {
         int[] array = new int[]{8, 4, 5, 1, 2, 7, 3};
+
         int[] arr = findThreeLargestNumbers(array);
 
         printArr(arr);
         printArr(findThreeLargestNumbers2(array));
+        printArr(findThreeLargestNumbers3(array));
 
     }
 
 
-    static void printArr(int []arr) {
+    static void printArr(int[] arr) {
         for (int i : arr)
             System.out.print(i + "  ");
         System.out.println();
