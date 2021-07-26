@@ -15,7 +15,6 @@ public class BubbleSort {
                     isSorted = false;
                 }
             }
-            printArr(array);
             if (isSorted) break;
 
         }
@@ -24,11 +23,31 @@ public class BubbleSort {
     }
 
 
+    public static int[] bubbleSort2(int[] array) {
+        boolean isSorted = false;
+        int j=0;
+        while (!isSorted) {
+            isSorted=true;
+            for (int i = 0; i < array.length-j-1; i++) {
+                if (array[i] > array[i + 1]) {
+                    int temp = array[i + 1];
+                    array[i + 1] = array[i];
+                    array[i] = temp;
+                    isSorted = false;
+                }
+            }
+            j++;
+        }
+
+
+        return array;
+    }
 
 
     public static void main(String[] args) {
         int[] array = new int[]{8, 4, 5, 1, 2, 7, 3};
         printArr(bubbleSort(array));
+        printArr(bubbleSort2(array));
 
     }
 
