@@ -2,7 +2,10 @@ package AlgoExpert;
 
 public class BubbleSort {
 
-    //Worst: O(n^2) time | O(1) space, where n is the length of the input array.
+//    Best: O(n) time | O(1) space, where n is the length of the input array.
+//    Average: O(n^2) time | O(1) space, where n is the length of the input array.
+//    Worst: O(n^2) time | O(1) space, where n is the length of the input array.
+
     public static int[] bubbleSort(int[] array) {
         for (int idx = array.length - 1; idx >= 0; idx--) {
             boolean isSorted = true;
