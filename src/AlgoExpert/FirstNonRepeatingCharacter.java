@@ -43,7 +43,7 @@ public class FirstNonRepeatingCharacter {
 
 
     public static void main(String[] args) {
-        String text = "GeeksforGeeks";
+        String text = "ABCDEABCD";
 
         System.out.println(text.charAt(firstNonRepeating(text)));
         System.out.println(text.charAt(firstNonRepeating2(text)));
