@@ -5,7 +5,7 @@ import java.util.Map;
 
 public class GenerateDocument {
 
-    public boolean generateDocument(String characters, String document) {
+    public static boolean generateDocument(String characters, String document) {
         // Write your code here.
         if (document.equals("")) return true;
 
@@ -22,6 +22,11 @@ public class GenerateDocument {
         return true;
     }
 
+    public static void main(String[] args) {
+        String charchters = "ABCDEABCD";
+        String doc = "ABCDEABDD";
 
+        System.out.println(generateDocument(charchters,doc));
+    }
 
 }
