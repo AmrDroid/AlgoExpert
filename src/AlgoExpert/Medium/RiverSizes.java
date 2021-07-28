@@ -6,49 +6,49 @@ import java.util.List;
 import java.util.Queue;
 
 public class RiverSizes {
+
     public static List<Integer> riverSizes(int[][] matrix) {
         int height = matrix.length;
         int width = matrix[0].length;
+        List<Integer> sizes = new ArrayList<>();
+        boolean[][] visited = new boolean[height][width];
 
-        ArrayList<Integer> sizes = new ArrayList<>();
-        boolean [][]visited = new boolean[height][width];
         for (int row = 0; row < height; row++) {
             for (int column = 0; column < width; column++) {
                 if (visited[row][column]) continue;
+
                 traversNode(matrix, row, column, sizes, visited);
             }
         }
         return sizes;
     }
 
-    private static void traversNode(int[][] matrix, int row, int column, ArrayList<Integer> sizes, boolean[][] visited) {
 
+    private static void traversNode(int[][] matrix, int row, int column, List<Integer> sizes, boolean[][] visited) {
         Queue<Integer[]> queue = new LinkedList<>();
         queue.add(new Integer[]{row, column});
         int currentSize = 0;
 
         while (!queue.isEmpty()) {
-            Integer[] arr = queue.poll();
-            row = arr[0];
-            column = arr[1];
+            Integer[] item = queue.poll();
+            row = item[0];
+            column = item[1];
 
             if (visited[row][column]) continue;
-            visited[row][column] = true;
-
+            visited[row][column]=true;
             if (matrix[row][column] == 0) continue;
 
-            List<Integer[]> neighbors = getNeighborsOfCurrentNode(matrix, row, column, visited);
-
             ++currentSize;
-            queue.addAll(neighbors);
+
+            queue.addAll(getNeighborsOfCurrentNode(matrix, row, column, visited));
         }
-        if (currentSize > 0)
+        if(currentSize>0)
             sizes.add(currentSize);
 
 
     }
 
-    private static List<Integer[]> getNeighborsOfCurrentNode(int [][]matrix, int row, int column, boolean [][]visited) {
+    private static List<Integer[]> getNeighborsOfCurrentNode(int[][] matrix, int row, int column, boolean[][] visited) {
         int height = matrix.length;
         int width = matrix[0].length;
         List<Integer[]> neighbors = new ArrayList<>();
