@@ -1,4 +1,4 @@
-package AlgoExpert;
+package AlgoExpert.Easy;
 
 public class InsertionSort {
 

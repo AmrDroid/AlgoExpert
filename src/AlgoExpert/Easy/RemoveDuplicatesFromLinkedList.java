@@ -1,4 +1,4 @@
-package AlgoExpert;
+package AlgoExpert.Easy;
 
 import java.util.HashMap;
 
