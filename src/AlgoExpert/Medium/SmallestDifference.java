@@ -78,6 +78,42 @@ public class SmallestDifference {
     }
 
 
+    ///////////////////////////////////////////////////////////
+
+    public static int[] smallestDiff3(int[] arrayOne, int[] arrayTwo) {
+        if (arrayOne == null || arrayTwo == null) return new int[]{};
+
+        Arrays.sort(arrayOne);
+        Arrays.sort(arrayTwo);
+
+        int i = 0, j = 0;
+        int num1 = 0, num2 = 0;
+        int min = Integer.MAX_VALUE, difference;
+
+        while (i < arrayOne.length && j < arrayTwo.length) {
+            int val1 = arrayOne[i], val2 = arrayTwo[j];
+            if (val1 < val2) {
+                difference = val2 - val1;
+                ++i;
+            } else {
+                difference = val1 - val2;
+                ++j;
+            }
+            if (difference == 0) return new int[]{num1, num2};
+
+            if (difference < min) {
+                min = difference;
+                num1 = val1;
+                num2 = val2;
+            }
+        }
+
+        return new int[]{num1, num2};
+
+
+    }
+
+
     public static void main(String[] args) {
         int A[] = {100, 4, 45, 6, 10, 8};
         int B[] = {44, 140, 20, 30, 1000, 80};
@@ -88,6 +124,10 @@ public class SmallestDifference {
 
         int res2[] = smallestDiff2(A, B);
         System.out.println(res2[0] + "   " + res2[1]);
+
+
+        int res3[] = smallestDiff3(A, B);
+        System.out.println(res3[0] + "   " + res3[1]);
 
     }
 }
