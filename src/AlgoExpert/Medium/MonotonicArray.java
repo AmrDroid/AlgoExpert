@@ -5,9 +5,22 @@ import java.util.List;
 
 public class MonotonicArray {
 
+    public static boolean isMonotonic2(List<Integer> numbers) {
+        if (numbers == null || numbers.size() <= 2) return true;
+
+        boolean isIncreasing = true, isDecreasing = true;
+
+        for (int i = 0; i < numbers.size() - 1; i++) {
+            if (numbers.get(i) > numbers.get(i + 1)) isIncreasing = false;
+            else if (numbers.get(i) < numbers.get(i + 1)) isDecreasing = false;
+        }
+
+        return isIncreasing || isDecreasing;
+    }
+
 
     private static boolean isMonotonic(List<Integer> numbers) {
-        if (numbers == null || numbers.size()<= 2) return true;
+        if (numbers == null || numbers.size() <= 2) return true;
 
         boolean increasing = false;
         if (numbers.get(0) < numbers.get(1))
@@ -35,7 +48,8 @@ public class MonotonicArray {
         A.add(7);
         A.add(8);
 
-        System.out.print(isMonotonic(A));
+        System.out.println(isMonotonic(A));
+        System.out.println(isMonotonic2(A));
 
     }
 
